@@ -1,10 +1,11 @@
 # intent_original
 
-A new Flutter project.
+This Project called Intent which is a mock Interview platform .
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project is the second project.
+I designed this app like a social media platform.
 
 A few resources to get you started if this is your first Flutter project:
 
