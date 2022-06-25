@@ -4,13 +4,13 @@ import 'package:intent_original/View/Core/Colors/colors.dart';
 import 'package:sizer/sizer.dart';
 
 class CustomButton extends StatelessWidget {
-final  String user;
+final  String title;
 final double height;
 final double fontSize;
 final Color primary;
-final Function onPressed;
+final VoidCallback onPressed;
  const CustomButton({
-    required this.user,
+    required this.title,
     Key? key, required this.height, required this.fontSize, required this.primary, required this.onPressed,
   }) : super(key: key);
 
@@ -19,9 +19,7 @@ final Function onPressed;
     return SizedBox(
       height: height,
       child: ElevatedButton(
-        onPressed: () {
-          onPressed;
-        },
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           primary: primary,
           shape: RoundedRectangleBorder(
@@ -32,7 +30,7 @@ final Function onPressed;
         child: Padding(
           padding: EdgeInsets.all(1.h),
           child: Text(
-            user,
+            title,
             style: GoogleFonts.outfit(
                 textStyle: TextStyle(
                     fontSize: fontSize,
