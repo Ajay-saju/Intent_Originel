@@ -2,9 +2,10 @@ import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intent_original/View/Core/Colors/colors.dart';
+import 'package:intent_original/View/Screens/UI/AddPostScreen/user_post_screen.dart';
 import 'package:intent_original/View/Screens/UI/ChatScreen/chat_screen.dart';
 import 'package:intent_original/View/Screens/UI/HomeScreen/horm_screen.dart';
-import 'package:intent_original/View/Screens/UI/PostScreen/user_post_screen.dart';
+import 'package:intent_original/View/Screens/UI/InterviewerProfileScreen/interviewer_profile_screen.dart';
 import 'package:intent_original/View/Screens/UI/ProfileScreen/profile_screen.dart';
 import 'package:intent_original/View/Screens/UI/SearchScreen/search_screen.dart';
 import 'package:sizer/sizer.dart';
@@ -46,7 +47,7 @@ class _BottumNavBarScreenState extends State<BottumNavBarScreen> {
             ChatScreen(),
             PostScreen(),
             SearchScreen(),
-            ProfileScreen()
+            InterviwerProfileScreen()
           ],
         ),
       ),

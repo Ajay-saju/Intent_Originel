@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intent_original/View/Core/Colors/colors.dart';
+import 'package:intent_original/View/Core/Size/size.dart';
 import 'package:sizer/sizer.dart';
 
 class ProfilePageListTile extends StatelessWidget {
@@ -9,22 +10,26 @@ class ProfilePageListTile extends StatelessWidget {
 
   const ProfilePageListTile({
     required this.profileTitle,
-    Key? key, required this.onTap,
+    Key? key,
+    required this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-    onTap: onTap,
-      
-      title: Text(
-        profileTitle,
-        style: GoogleFonts.spaceGrotesk(
-            color: textColors, fontWeight: FontWeight.w700, fontSize: 18.sp),
-      ),
-      trailing: const Icon(
-        Icons.arrow_forward_ios_rounded,
-        color: textColors,
+    return SizedBox(
+      height: 6.h,
+      child: ListTile(
+        
+        onTap: onTap,
+        title: Text(
+          profileTitle,
+          style: GoogleFonts.spaceGrotesk(
+              color: textColors, fontWeight: FontWeight.w700, fontSize: 14.sp),
+        ),
+        trailing:  Icon(
+          Icons.arrow_forward_ios_rounded,size: 2.h,
+          color: textColors,
+        ),
       ),
     );
   }

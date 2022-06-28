@@ -31,10 +31,13 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  flutter_rounded_date_picker: ^3.0.1
   flutter_svg: ^1.1.0
   get: ^4.6.5
+  getxbottombar: ^0.0.1
   google_fonts: ^3.0.1
-  
   sizer: ^2.0.15
 
 dev_dependencies:

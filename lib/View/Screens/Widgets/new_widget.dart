@@ -9,9 +9,9 @@ import 'package:sizer/sizer.dart';
 class NewWidget extends StatelessWidget {
   final TitleTextWidget? widget;
   const NewWidget({
-    Key? key,  this.widget,
+    Key? key,  this.widget, required this.isHome,
   }) : super(key: key);
-
+final bool isHome;
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -46,8 +46,9 @@ class NewWidget extends StatelessWidget {
                 ),
                 const TitleTextWidget(color: cBlack, text: '8', fontSize: 8),
                 const Spacer(),
+                if (isHome)
                 const Icon(Icons.add),
-                
+                if(isHome)
                 const TitleTextWidget(
                     color: textColors, text: 'Follow', fontSize: 12),
 
