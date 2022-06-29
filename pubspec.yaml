@@ -38,6 +38,7 @@ dependencies:
   get: ^4.6.5
   getxbottombar: ^0.0.1
   google_fonts: ^3.0.1
+  intl: ^0.17.0
   sizer: ^2.0.15
 
 dev_dependencies:

@@ -1,18 +1,21 @@
 // ignore_for_file: sort_child_properties_last
 
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/simple/get_state.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intent_original/Controller/date_controller.dart';
+import 'package:intent_original/Controller/time_controller.dart';
 import 'package:intent_original/View/Core/Colors/colors.dart';
 import 'package:intent_original/View/Core/Size/size.dart';
 import 'package:intent_original/View/Screens/Widgets/interview_page_timing_widget.dart';
 import 'package:intent_original/View/Screens/Widgets/post_circle_avathar_widget.dart';
 import 'package:intent_original/View/Screens/Widgets/post_title_widget.dart';
+import 'package:intent_original/View/Screens/Widgets/select_date_widget.dart';
+import 'package:intent_original/View/Screens/Widgets/select_time_widget.dart';
 import 'package:intent_original/View/Screens/Widgets/user_tab_app_bar.dart';
+import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
-import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 // import 'package:flutter_rounded_date_picker/rounded_picker.dart';
 
 class InterviewerRequiestScreen extends StatelessWidget {
@@ -20,7 +23,13 @@ class InterviewerRequiestScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DateTime date = DateTime.now();
+    final dateController = Get.put(DateController());
+    final timeController = Get.put(FromTimeController());
+    
+
+    TextEditingController textDateController = TextEditingController();
+    TextEditingController textFromTimeController = TextEditingController();
+    TextEditingController textToTimeController = TextEditingController();
 
     return Scaffold(
       appBar: PreferredSize(
@@ -35,7 +44,7 @@ class InterviewerRequiestScreen extends StatelessWidget {
                   itemBuilder: (context, index) => Padding(
                         padding: EdgeInsets.symmetric(horizontal: 2.h),
                         child: Container(
-                          height: 40.h,
+                          height: 50.h,
                           decoration: BoxDecoration(
                               boxShadow: [textColorShadow()],
                               color: buttonColor,
@@ -90,34 +99,45 @@ class InterviewerRequiestScreen extends StatelessWidget {
                                         iconPath:
                                             'asset/Icons/email-svgrepo-com (1).svg',
                                         content: 'rafimuideen@gmail.com'),
-                                    h1,
+                                    h2,
                                     const InterviewPageTimingWidget(
                                         iconPath:
                                             'asset/Icons/phone-call-telephone-svgrepo-com.svg',
                                         content: '+91-7034019771'),
-                                    h1,
-                                    TextButton(
-                                        onPressed: () async {
-                                          DateTime? newDate =
-                                              await showDatePicker(
-                                                  context: context,
-                                                  initialDate: date,
-                                                  firstDate: DateTime.now(),
-                                                  lastDate: DateTime(2023));
+                                    h2,
 
-                                          if (newDate == null) return;
-                                        },
-                                        child: Text('Pick time')),
-                                    GetBuilder<DateController>(
-                                      init: DateController(),
-                                      initState: (_) {
-                                        
-                                      },
-                                      builder: (controller) {
-                                        return Text(
-                                            "${date.year}/${date.month}/${date.day}");
-                                      },
-                                    )
+                                    SelectDateWidget(
+                                        dateController: dateController,
+                                        textDateController: textDateController),
+                                    h2,
+
+                                    Row(
+                                      children: [
+                                        SvgPicture.asset(
+                                          'asset/Icons/time-left-svgrepo-com.svg',
+                                          width: 3.5.h,
+                                          height: 3.5.h,
+                                        ),
+                                        w1,
+                                        Row(
+                                          children: [
+                                            SelectTimeFromWidget(
+                                              timeController: timeController,
+                                              textTimeController:
+                                                  textFromTimeController,
+                                              hintText: 'From',
+                                            ),
+                                            w1,
+                                            
+                                            
+
+                                          
+                                          ],
+                                        )
+                                      ],
+                                    ),
+
+                                    //  Text()
                                   ],
                                 ),
                               )
@@ -138,6 +158,4 @@ class InterviewerRequiestScreen extends StatelessWidget {
       offset: const Offset(2.0, 2.0), // shadow direction: bottom right
     );
   }
-
-  Future pickDateAndTime(context) async {}
 }
