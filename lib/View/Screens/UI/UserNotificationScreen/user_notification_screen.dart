@@ -124,8 +124,8 @@ class UserNotificationScreen extends StatelessWidget {
   }
 
   BoxShadow textColorShadow() {
-    return  BoxShadow(
-      color: Colors.blue[200]!,
+    return  const BoxShadow(
+      color: Color.fromARGB(255, 168, 191, 209),
       blurRadius: 2.0,
       spreadRadius: 1.0,
       offset: Offset(2.0, 2.0), // shadow direction: bottom right

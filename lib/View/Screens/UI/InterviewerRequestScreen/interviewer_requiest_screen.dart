@@ -1,20 +1,20 @@
 // ignore_for_file: sort_child_properties_last
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intent_original/Controller/date_controller.dart';
 import 'package:intent_original/Controller/time_controller.dart';
+import 'package:intent_original/Controller/to_time_controller.dart';
 import 'package:intent_original/View/Core/Colors/colors.dart';
 import 'package:intent_original/View/Core/Size/size.dart';
+import 'package:intent_original/View/Screens/Widgets/custume_button.dart';
 import 'package:intent_original/View/Screens/Widgets/interview_page_timing_widget.dart';
 import 'package:intent_original/View/Screens/Widgets/post_circle_avathar_widget.dart';
 import 'package:intent_original/View/Screens/Widgets/post_title_widget.dart';
 import 'package:intent_original/View/Screens/Widgets/select_date_widget.dart';
-import 'package:intent_original/View/Screens/Widgets/select_time_widget.dart';
+import 'package:intent_original/View/Screens/Widgets/select_interview_time_widget.dart';
 import 'package:intent_original/View/Screens/Widgets/user_tab_app_bar.dart';
-import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
 // import 'package:flutter_rounded_date_picker/rounded_picker.dart';
 
@@ -25,7 +25,7 @@ class InterviewerRequiestScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final dateController = Get.put(DateController());
     final timeController = Get.put(FromTimeController());
-    
+    final toTimeControler = Get.put(ToTimeController());
 
     TextEditingController textDateController = TextEditingController();
     TextEditingController textFromTimeController = TextEditingController();
@@ -44,7 +44,7 @@ class InterviewerRequiestScreen extends StatelessWidget {
                   itemBuilder: (context, index) => Padding(
                         padding: EdgeInsets.symmetric(horizontal: 2.h),
                         child: Container(
-                          height: 50.h,
+                          height: 53.h,
                           decoration: BoxDecoration(
                               boxShadow: [textColorShadow()],
                               color: buttonColor,
@@ -111,31 +111,39 @@ class InterviewerRequiestScreen extends StatelessWidget {
                                         textDateController: textDateController),
                                     h2,
 
+                                    SelectInterviewTimewidget(
+                                        timeController: timeController,
+                                        textFromTimeController:
+                                            textFromTimeController,
+                                        toTimeControler: toTimeControler,
+                                        textToTimeController:
+                                            textToTimeController),
+                                    h2,
+                                    const InterviewPageTimingWidget(
+                                        iconPath:
+                                            'asset/Icons/video-call-svgrepo-com.svg',
+                                        content: "Interview link"),
+                                    h2,
                                     Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
-                                        SvgPicture.asset(
-                                          'asset/Icons/time-left-svgrepo-com.svg',
-                                          width: 3.5.h,
-                                          height: 3.5.h,
-                                        ),
+                                        CustomButton(
+                                            title: 'Cancel',
+                                            height: 4.h,
+                                            fontSize: 11.sp,
+                                            primary: const Color.fromARGB(
+                                                255, 209, 83, 74),
+                                            onPressed: () {}),
                                         w1,
-                                        Row(
-                                          children: [
-                                            SelectTimeFromWidget(
-                                              timeController: timeController,
-                                              textTimeController:
-                                                  textFromTimeController,
-                                              hintText: 'From',
-                                            ),
-                                            w1,
-                                            
-                                            
-
-                                          
-                                          ],
-                                        )
+                                        CustomButton(
+                                            title: 'Confirm',
+                                            height: 4.h,
+                                            fontSize: 11.sp,
+                                            primary: const Color.fromARGB(
+                                                255, 125, 241, 129),
+                                            onPressed: () {})
                                       ],
-                                    ),
+                                    )
 
                                     //  Text()
                                   ],

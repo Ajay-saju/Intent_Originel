@@ -48,6 +48,8 @@ class _BottumNavBarScreenState extends State<BottumNavBarScreen> {
             PostScreen(),
             SearchScreen(),
             InterviwerProfileScreen()
+            // ProfileScreen()
+
           ],
         ),
       ),

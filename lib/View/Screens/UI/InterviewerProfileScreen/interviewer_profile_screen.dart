@@ -5,6 +5,8 @@ import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intent_original/View/Core/Colors/colors.dart';
 import 'package:intent_original/View/Core/Size/size.dart';
+import 'package:intent_original/View/Screens/UI/Interviewer%20Dashboard/interviewer_dashboard_screen.dart';
+import 'package:intent_original/View/Screens/UI/Interviewer%20Reports%20Screen/interview_report_screen.dart';
 import 'package:intent_original/View/Screens/UI/InterviewerRequestScreen/interviewer_requiest_screen.dart';
 import 'package:intent_original/View/Screens/UI/UserNetworkScreen/user_network_screen.dart';
 import 'package:intent_original/View/Screens/UI/UserPostScreen/posts_screen.dart';
@@ -54,9 +56,13 @@ class InterviwerProfileScreen extends StatelessWidget {
                   Get.to(const InterviewerRequiestScreen());
                 }),
                 const ProfileDivider(),
-                ProfilePageListTile(profileTitle: 'Dashboard', onTap: () {}),
+                ProfilePageListTile(profileTitle: 'Dashboard', onTap: () {
+                  Get.to(const InterviewerDashboardScreen());
+                }),
                 const ProfileDivider(),
-                ProfilePageListTile(profileTitle: 'Reports', onTap: () {}),
+                ProfilePageListTile(profileTitle: 'Reports', onTap: () {
+                  Get.to(const InterviewReportScreen());
+                }),
                 const ProfileDivider(),
                 ListTile(
                   title: Text(
