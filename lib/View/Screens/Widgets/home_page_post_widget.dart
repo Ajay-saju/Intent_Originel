@@ -37,7 +37,7 @@ class HomePagePosts extends StatelessWidget {
                            const Spacer(),
                            SizedBox(
                              height: 3.h,
-                             child: const CustomElevetedButton(text: 'ASK',),
+                             child: const CustomElevetedButton(text: 'ASK', color: Colors.green,),
                            ),
                          ],
                        ),

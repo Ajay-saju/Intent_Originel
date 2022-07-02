@@ -5,9 +5,10 @@ import 'package:intent_original/View/Core/Colors/colors.dart';
 import 'package:sizer/sizer.dart';
 
 class CustomElevetedButton extends StatelessWidget {
+  final Color color;
   final String text;
   const CustomElevetedButton({
-    Key? key, required this.text,
+    Key? key, required this.text, required this.color,
   }) : super(key: key);
 
   @override
@@ -15,7 +16,7 @@ class CustomElevetedButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: () {},
       style: ElevatedButton.styleFrom(
-        primary: Colors.green[400],
+        primary: color,
         shape: RoundedRectangleBorder(
           borderRadius:
               BorderRadius.circular(.5.h),

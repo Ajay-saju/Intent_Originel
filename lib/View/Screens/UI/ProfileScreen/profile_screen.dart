@@ -23,7 +23,7 @@ class ProfileScreen extends StatelessWidget {
         children: [
           h2,
           Column(children:  [
-              const ProfilePicture(),
+               ProfilePicture(),
               h2,
            const TitleTextWidget(color: textColors, text: 'Ajay Saju', fontSize: 20),
            h1, const TitleTextWidget(color: cBlack, text: 'Flutter Developer', fontSize: 17),

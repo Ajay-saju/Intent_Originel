@@ -26,7 +26,7 @@ class SignUpScreen extends StatelessWidget {
                 title: 'Register',
                 subTitle: 'Create account by filling the form below .',
               ),
-              const ProfilePicture(),
+               ProfilePicture(),
               const TextformField(
                 hintText: 'Name',
                 svgPath: 'asset/Icons/user-svgrepo-com (1).svg',
