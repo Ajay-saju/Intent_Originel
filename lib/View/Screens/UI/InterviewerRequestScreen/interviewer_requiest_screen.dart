@@ -33,7 +33,7 @@ class InterviewerRequiestScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: PreferredSize(
-          child: const UserTabAppBar(title: "Requiest's"),
+          child: const UserTabAppBar(title: "Request"),
           preferredSize: Size(double.infinity, 7.h)),
       body: Column(
         children: [

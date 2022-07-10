@@ -28,7 +28,7 @@ final bool isHome;
             child: Row(
               children: [
                 w1,
-                const Icon(
+                 Icon(
                   Icons.favorite_border_sharp,
                   color: amber,
                 ),
@@ -37,7 +37,7 @@ final bool isHome;
                 ),
                 const TitleTextWidget(color: cBlack, text: '12', fontSize: 8),
                 w1,
-                const Icon(
+                 Icon(
                   Icons.comment_rounded,
                   color: amber,
                 ),

@@ -7,3 +7,4 @@ final grey800= Colors.grey[800];
 const white = Colors.white;
 const amber =Colors.amber;
 final orange = Colors.orange[100];
+const red = Colors.red;

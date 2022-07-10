@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:intent_original/View/Core/Colors/colors.dart';
 import 'package:intent_original/View/Core/Size/size.dart';
 import 'package:intent_original/View/Screens/Widgets/custom_elevetedbutton.dart';
 import 'package:intent_original/View/Screens/Widgets/new_widget.dart';
@@ -15,65 +18,107 @@ class HomePagePosts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-     child: ListView.builder(
-         itemCount: 1,
-         itemBuilder: (context, index) => Padding(
-               padding: EdgeInsets.only(left: 2.h, right: 2.h),
-               child: Container(
-                 height: 40.h,
-                 decoration: BoxDecoration(
-                     color: const Color.fromRGBO(128, 199, 255, .7),
-                     borderRadius: BorderRadius.circular(5.h)),
-                 child: Padding(
-                   padding:
-                       EdgeInsets.only(left: 2.h, right: 2.h, top: 1.h),
-                   child: Column(
-                     children: [
-                       Row(
-                         children: [
-                           const PostCircleAvatarWidget(),
-                           w1,
-                           const PostTitleWidget(title: 'Sudheesh',subTitle: 'Interviwer',),
-                           const Spacer(),
-                           SizedBox(
-                             height: 3.h,
-                             child: const CustomElevetedButton(text: 'ASK', color: Colors.green,),
-                           ),
-                         ],
-                       ),
-                       h1,
-                       // ClipRRect(borderRadius: BorderRadius.circular(2.h),child: Stack(children: [
-                       //   Image.network( 'https://www.insightsonindia.com/wp-content/uploads/2019/10/Block-Chain-Technology.png',fit: BoxFit.cover,),
-                       // ],),),
-                       SizedBox(
-                         height: 28.5.h,
-                         child: Stack(
-                           children:const [
-                             PostFromUserWidget(),
-                               Align(
-                               alignment: Alignment.bottomCenter,
-                               child: NewWidget(isHome: true,),
-                             )
-                             // Positioned(child: Container(height: 5.h, color: Colors.white.withOpacity(2),))
-                             // Align(
-                             //     alignment: Alignment.bottomCenter,
-                             //     child: BackdropFilter(
-                             //       filter: ImageFilter.blur(
-                             //           sigmaX: 5, sigmaY: 5),
-                             //       child: Container(
-                             //           height: 5.h,
-                             //           color: Colors.black.withOpacity(2)),
-                             //     )),
-                           ],
-                         ),
-                       )
-                     ],
-                   ),
-                 ),
-               ),
-             )),
-          );
+      child: ListView.builder(
+          itemCount: 1,
+          itemBuilder: (context, index) => Padding(
+                padding: EdgeInsets.only(left: 2.h, right: 2.h),
+                child: Container(
+                  height: 40.h,
+                  decoration: BoxDecoration(
+                      color: const Color.fromRGBO(128, 199, 255, .7),
+                      borderRadius: BorderRadius.circular(5.h)),
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 2.h, right: 2.h, top: 1.h),
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            const PostCircleAvatarWidget(),
+                            w1,
+                            const PostTitleWidget(
+                              title: 'Sudheesh',
+                              subTitle: 'Interviwer',
+                            ),
+                            const Spacer(),
+                            SizedBox(
+                              height: 3.h,
+                              child: CustomElevetedButton(
+                                text: 'ASK',
+                                color: Colors.green,
+                                onPressed: () {
+                                  showDialog<String>(
+                                    context: context,
+                                    builder: (BuildContext context) =>
+                                         AlertDialog(
+                                          elevation: 0,
+                                          backgroundColor: buttonColor,
+                                      title: const Text('Enter Your Requrment'),
+                                      content: TextFormField(
+                                          keyboardAppearance: Brightness.dark,
+                                          cursorColor: buttonColor,
+                                          textInputAction: TextInputAction.next,
+                                          decoration: InputDecoration(
+                                            // enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: buttonColor,width: 0.5.w)),
+                                            contentPadding:
+                                                EdgeInsets.only(right: 2.h),
+                                            hintText: 'Type here',
+                                            focusColor: buttonColor,
+                                            hintStyle:
+                                                TextStyle(fontSize: 14.sp),
+                                          )),
+                                      actions: <Widget>[
+                                        CustomElevetedButton(text: '₹ 500', color: white, onPressed: (){}),
+                                        // TextButton(
+                                        //   onPressed: () =>
+                                        //       Navigator.pop(context, 'Cancel'),
+                                        //   child:  Text('Cancel',style:GoogleFonts.poppins(textStyle: TextStyle(fontSize: 16.sp,color: white))),
+                                        // ),
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(context, 'OK'),
+                                          child:  Text('Submit',style: GoogleFonts.poppins(textStyle: TextStyle(fontSize: 16.sp,color: white)),),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        h1,
+                        // ClipRRect(borderRadius: BorderRadius.circular(2.h),child: Stack(children: [
+                        //   Image.network( 'https://www.insightsonindia.com/wp-content/uploads/2019/10/Block-Chain-Technology.png',fit: BoxFit.cover,),
+                        // ],),),
+                        SizedBox(
+                          height: 28.5.h,
+                          child: Stack(
+                            children: const [
+                              PostFromUserWidget(),
+                              Align(
+                                alignment: Alignment.bottomCenter,
+                                child: NewWidget(
+                                  isHome: true,
+                                ),
+                              )
+                              // Positioned(child: Container(height: 5.h, color: Colors.white.withOpacity(2),))
+                              // Align(
+                              //     alignment: Alignment.bottomCenter,
+                              //     child: BackdropFilter(
+                              //       filter: ImageFilter.blur(
+                              //           sigmaX: 5, sigmaY: 5),
+                              //       child: Container(
+                              //           height: 5.h,
+                              //           color: Colors.black.withOpacity(2)),
+                              //     )),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              )),
+    );
   }
 }
-
-

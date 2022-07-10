@@ -18,11 +18,12 @@ class IterviwerEditScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
           child: ListView(
+            
         children: [
           h2,
           Column(
             children: [
-              ProfilePicture(),
+              ProfilePicture(isvisible: true,),
               h2,
               const TitleTextWidget(
                   color: textColors, text: 'Muneer Ahamed', fontSize: 20),
@@ -62,18 +63,18 @@ class IterviwerEditScreen extends StatelessWidget {
                 h1,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: const [
+                  children:  [
                     CustomElevetedButton(
                       text: 'Free',
-                      color: Color.fromARGB(255, 235, 217, 217),
+                      color: const Color.fromARGB(255, 235, 217, 217), onPressed: () {  },
                     ),
                     CustomElevetedButton(
                       text: '₹ 500',
-                      color: Colors.amber,
+                      color: Colors.amber, onPressed: () {  },
                     ),
                     CustomElevetedButton(
                       text: '₹ 1000',
-                      color: Colors.green,
+                      color: Colors.green, onPressed: () {  },
                     )
                   ],
                 ),

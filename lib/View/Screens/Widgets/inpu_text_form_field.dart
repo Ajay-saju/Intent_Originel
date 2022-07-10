@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intent_original/View/Core/Colors/colors.dart';
+import 'package:intent_original/View/Form%20validation/form_validation.dart';
 import 'package:sizer/sizer.dart';
 
 class TextformField extends StatelessWidget {
   final String hintText;
   final String svgPath;
   final TextInputType keyboardType;
+  final String? Function(String?)? validator;
+  final Function(String)? onChanged;
+  final TextEditingController? controller;
 
   const TextformField(
-      {Key? key,
+      {super.key,
+      this.controller,
       required this.hintText,
       required this.svgPath,
-      required this.keyboardType})
-      : super(key: key);
+      required this.keyboardType,
+    
+     required this.onChanged,required this.validator});
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +40,10 @@ class TextformField extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.only(left: 2.h, right: 3.h),
             child: TextFormField(
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              controller: controller,
+                onChanged: onChanged,
+                validator: validator,
                 keyboardAppearance: Brightness.dark,
                 cursorColor: buttonColor,
                 textInputAction: TextInputAction.next,

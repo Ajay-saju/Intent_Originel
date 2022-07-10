@@ -29,6 +29,7 @@ environment:
 dependencies:
   bottom_navy_bar: ^6.0.0
   cupertino_icons: ^1.0.2
+  dio: ^4.0.6
   fl_chart: ^0.55.0
   flutter:
     sdk: flutter
@@ -39,6 +40,7 @@ dependencies:
   get: ^4.6.5
   getxbottombar: ^0.0.1
   google_fonts: ^3.0.1
+  image_picker: ^0.8.5+3
   intl: ^0.17.0
   sizer: ^2.0.15
   syncfusion_flutter_charts: ^20.1.61

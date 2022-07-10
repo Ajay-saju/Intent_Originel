@@ -29,9 +29,12 @@ class InterviwerProfileScreen extends StatelessWidget {
           h2,
           Column(
             children: [
-               ProfilePicture(ontap: () {
-                 Get.to(const IterviwerEditScreen());
-               },),
+              ProfilePicture(
+                ontap: () {
+                  Get.to(const IterviwerEditScreen());
+                },
+                isvisible: false,
+              ),
               h2,
               const TitleTextWidget(
                   color: textColors, text: 'Muneer Ahamed', fontSize: 20),
@@ -44,28 +47,38 @@ class InterviwerProfileScreen extends StatelessWidget {
           ),
           h2,
           Padding(
-            padding:  EdgeInsets.all(3.h),
+            padding: EdgeInsets.all(3.h),
             child: Column(
               children: [
-                ProfilePageListTile(profileTitle: 'Posts', onTap: () {
-                  Get.to(const UserPostScreen());
-                }),
+                ProfilePageListTile(
+                    profileTitle: 'Posts',
+                    onTap: () {
+                      Get.to(const UserPostScreen());
+                    }),
                 const ProfileDivider(),
-                ProfilePageListTile(profileTitle: 'Network', onTap: () {
-                  Get.to(const UserNetworkScreen());
-                }),
+                ProfilePageListTile(
+                    profileTitle: 'Network',
+                    onTap: () {
+                      Get.to(const UserNetworkScreen());
+                    }),
                 const ProfileDivider(),
-                ProfilePageListTile(profileTitle: 'Requiest', onTap: () {
-                  Get.to(const InterviewerRequiestScreen());
-                }),
+                ProfilePageListTile(
+                    profileTitle: 'Request',
+                    onTap: () {
+                      Get.to(const InterviewerRequiestScreen());
+                    }),
                 const ProfileDivider(),
-                ProfilePageListTile(profileTitle: 'Dashboard', onTap: () {
-                  Get.to(const InterviewerDashboardScreen());
-                }),
+                ProfilePageListTile(
+                    profileTitle: 'Dashboard',
+                    onTap: () {
+                      Get.to(const InterviewerDashboardScreen());
+                    }),
                 const ProfileDivider(),
-                ProfilePageListTile(profileTitle: 'Reports', onTap: () {
-                  Get.to(const InterviewReportScreen());
-                }),
+                ProfilePageListTile(
+                    profileTitle: 'Reports',
+                    onTap: () {
+                      Get.to(const InterviewReportScreen());
+                    }),
                 const ProfileDivider(),
                 ListTile(
                   title: Text(

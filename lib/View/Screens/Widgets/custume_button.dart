@@ -4,14 +4,18 @@ import 'package:intent_original/View/Core/Colors/colors.dart';
 import 'package:sizer/sizer.dart';
 
 class CustomButton extends StatelessWidget {
-final  String title;
-final double height;
-final double fontSize;
-final Color primary;
-final VoidCallback onPressed;
- const CustomButton({
+  final String title;
+  final double height;
+  final double fontSize;
+  final Color primary;
+  final VoidCallback onPressed;
+  const CustomButton({
     required this.title,
-    Key? key, required this.height, required this.fontSize, required this.primary, required this.onPressed,
+    Key? key,
+    required this.height,
+    required this.fontSize,
+    required this.primary,
+    required this.onPressed,
   }) : super(key: key);
 
   @override

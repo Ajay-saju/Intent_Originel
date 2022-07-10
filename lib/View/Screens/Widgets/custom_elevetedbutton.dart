@@ -7,14 +7,15 @@ import 'package:sizer/sizer.dart';
 class CustomElevetedButton extends StatelessWidget {
   final Color color;
   final String text;
+  final VoidCallback onPressed;
   const CustomElevetedButton({
-    Key? key, required this.text, required this.color,
+    Key? key, required this.text, required this.color, required this.onPressed,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed:onPressed,
       style: ElevatedButton.styleFrom(
         primary: color,
         shape: RoundedRectangleBorder(
