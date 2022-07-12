@@ -11,15 +11,16 @@ class TextformField extends StatelessWidget {
   final String? Function(String?)? validator;
   final Function(String)? onChanged;
   final TextEditingController? controller;
+  final Widget? iconData;
 
-  const TextformField(
+  const  TextformField(
       {super.key,
       this.controller,
       required this.hintText,
       required this.svgPath,
       required this.keyboardType,
     
-     required this.onChanged,required this.validator});
+     required this.onChanged,required this.validator, this.iconData});
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +41,7 @@ class TextformField extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.only(left: 2.h, right: 3.h),
             child: TextFormField(
+              
               autovalidateMode: AutovalidateMode.onUserInteraction,
               controller: controller,
                 onChanged: onChanged,
@@ -49,6 +51,7 @@ class TextformField extends StatelessWidget {
                 textInputAction: TextInputAction.next,
                 keyboardType: keyboardType,
                 decoration: InputDecoration(
+                  suffixIcon: iconData,
                   // enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: buttonColor,width: 0.5.w)),
                   contentPadding: EdgeInsets.only(right: 2.h),
                   hintText: hintText,
@@ -57,6 +60,8 @@ class TextformField extends StatelessWidget {
                 )),
           ),
         ),
+        
+        
       ],
     );
   }

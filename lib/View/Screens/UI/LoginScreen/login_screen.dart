@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intent_original/Controller/authentication_controller.dart';
+import 'package:intent_original/Controller/eye_changing_controller.dart';
 import 'package:intent_original/View/Core/Colors/colors.dart';
 import 'package:intent_original/View/Core/Size/size.dart';
 import 'package:intent_original/View/Form%20validation/form_validation.dart';
@@ -20,6 +21,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final authenticationController = Get.put(AuthenticationController());
+    final eyeChaingingController = Get.put(EyeChaingingController());
     final formKey = GlobalKey<FormState>();
     String email = '';
     String password = '';
@@ -49,6 +51,14 @@ class LoginScreen extends StatelessWidget {
                 ),
                 h4,
                 TextformField(
+                  iconData:
+                      GetBuilder<EyeChaingingController>(builder: (controller) {
+                    return InkWell(
+                        onTap: () {
+                          eyeChaingingController.eyeChange();
+                        },
+                        child: eyeChaingingController.changeVisibility);
+                  }),
                   hintText: 'Password',
                   svgPath: 'asset/Icons/lock-password-svgrepo-com.svg',
                   keyboardType: TextInputType.text,
@@ -68,12 +78,11 @@ class LoginScreen extends StatelessWidget {
               height: 5.h,
               fontSize: 14.sp,
               primary: buttonColor,
-              onPressed: () {
+              onPressed: ()async {
                 if (formKey.currentState!.validate()) {
-                  print('Success');
+                  // print('Success');
 
-                  authenticationController.login(email, password);
-
+                await  authenticationController.login(email, password);
                 }
                 // Get.to(const BottumNavBarScreen());
               }),

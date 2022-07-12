@@ -1,29 +1,57 @@
+// To parse this JSON data, do
+//
+//     final loginResponseModel = loginResponseModelFromJson(jsonString);
+
+import 'dart:convert';
+
+LoginResponseModel loginResponseModelFromJson(String str) =>
+    LoginResponseModel.fromJson(json.decode(str));
+
+String loginResponseModelToJson(LoginResponseModel data) =>
+    json.encode(data.toJson());
+
 class LoginResponseModel {
-  String? message;
+  LoginResponseModel({
+    required this.message,
+    this.user,
+    this.token,
+  });
+
+  String message;
   User? user;
   String? token;
 
-  LoginResponseModel({this.message, this.user, this.token});
+  factory LoginResponseModel.fromJson(Map<String, dynamic> json) =>
+      LoginResponseModel(
+        message: json["message"],
+        user: User.fromJson(json["user"]),
+        token: json["token"],
+      );
 
-  LoginResponseModel.fromJson(Map<String, dynamic> json) {
-    message = json['message'];
-    user = json['user'] != null ?  User.fromJson(json['user']) : null;
-    token = json['token'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['message'] = message;
-    if (user != null) {
-      data['user'] = user!.toJson();
-    }
-    data['token'] = token;
-    return data;
-  }
+  Map<String, dynamic> toJson() => {
+        "message": message,
+        "user": user != null ? user!.toJson() : {},
+        "token": token,
+      };
 }
 
 class User {
-  String? sId;
+  User({
+    required this.id,
+    required this.name,
+    required this.phone,
+    required this.email,
+    required this.password,
+    required this.about,
+    required this.interviewer,
+    required this.experience,
+    required this.connections,
+    required this.block,
+    required this.v,
+    required this.profileImg,
+  });
+
+  String? id;
   String? name;
   int? phone;
   String? email;
@@ -33,52 +61,37 @@ class User {
   int? experience;
   List<String>? connections;
   bool? block;
-  int? iV;
+  int? v;
   String? profileImg;
 
-  User(
-      {this.sId,
-      this.name,
-      this.phone,
-      this.email,
-      this.password,
-      this.about,
-      this.interviewer,
-      this.experience,
-      this.connections,
-      this.block,
-      this.iV,
-      this.profileImg});
+  factory User.fromJson(Map<String, dynamic> json) => User(
+        id: json["_id"],
+        name: json["name"],
+        phone: json["phone"],
+        email: json["email"],
+        password: json["password"],
+        about: json["about"],
+        interviewer: json["interviewer"],
+        experience: json["experience"],
+        connections: List<String>.from(json["connections"].map((x) => x)),
+        block: json["block"],
+        v: json["__v"],
+        profileImg: json["profileImg"],
+      );
 
-  User.fromJson(Map<String, dynamic> json) {
-    sId = json['_id'];
-    name = json['name'];
-    phone = json['phone'];
-    email = json['email'];
-    password = json['password'];
-    about = json['about'];
-    interviewer = json['interviewer'];
-    experience = json['experience'];
-    connections = json['connections'].cast<String>();
-    block = json['block'];
-    iV = json['__v'];
-    profileImg = json['profileImg'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['_id'] =sId;
-    data['name'] =name;
-    data['phone'] =phone;
-    data['email'] =email;
-    data['password'] =password;
-    data['about'] =about;
-    data['interviewer'] =interviewer;
-    data['experience'] =experience;
-    data['connections'] =connections;
-    data['block'] =block;
-    data['__v'] =iV;
-    data['profileImg'] =profileImg;
-    return data;
-  }
+  Map<String, dynamic> toJson() => {
+        "_id": id,
+        "name": name,
+        "phone": phone,
+        "email": email,
+        "password": password,
+        "about": about,
+        "interviewer": interviewer,
+        "experience": experience,
+        "connections": List<dynamic>.from(
+            connections != null ? connections!.map((x) => x) : []),
+        "block": block,
+        "__v": v,
+        "profileImg": profileImg,
+      };
 }

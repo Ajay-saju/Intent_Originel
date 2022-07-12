@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_core/get_core.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:intent_original/Controller/authentication_controller.dart';
+import 'package:intent_original/Controller/user_registration_controller.dart';
 import 'package:intent_original/View/Core/Colors/colors.dart';
 import 'package:intent_original/View/Core/Size/size.dart';
 import 'package:intent_original/View/Form%20validation/form_validation.dart';
@@ -18,11 +21,15 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     FormValidations formValidations = FormValidations();
+    final userRegistrationController = Get.put(UserRegistrationController());
 
     String name = '';
     String email = '';
     String password = '';
     String phone = '';
+    String confirmPassword = '';
+    bool interviewer = false;
+    bool Interviewee = false;
     TextEditingController controller = TextEditingController();
     final formKey = GlobalKey<FormState>();
 
@@ -40,63 +47,73 @@ class SignUpScreen extends StatelessWidget {
                 isvisible: false,
               ),
               Form(
-                key:formKey ,
+                key: formKey,
                 child: Column(
-                children: [
-                   TextformField(
-                hintText: 'Name',
-                svgPath: 'asset/Icons/user-svgrepo-com (1).svg',
-                keyboardType: TextInputType.name,
-                onChanged: (String value) {
-                  name = value;
-                },
-                validator: (String? value) {
-                  return formValidations.nameValidation(name);
-                },
+                  children: [
+                    TextformField(
+                      hintText: 'Name',
+                      svgPath: 'asset/Icons/user-svgrepo-com (1).svg',
+                      keyboardType: TextInputType.name,
+                      onChanged: (String value) {
+                        name = value;
+                      },
+                      validator: (String? value) {
+                        return formValidations.nameValidation(name);
+                      },
+                    ),
+                    h1,
+                    TextformField(
+                      hintText: 'Enter email',
+                      svgPath: 'asset/Icons/email-svgrepo-com.svg',
+                      keyboardType: TextInputType.emailAddress,
+                      onChanged: (String value) {
+                        email = value;
+                      },
+                      validator: (String? value) {
+                        return formValidations.emailFormValidation(email);
+                      },
+                    ),
+                    h1,
+                    TextformField(
+                      hintText: 'Enter phone number',
+                      svgPath: 'asset/Icons/phone-svgrepo-com.svg',
+                      keyboardType: TextInputType.phone,
+                      onChanged: (String value) {
+                        phone = value;
+                      },
+                      validator: (String? value) {
+                        return formValidations.phoneNumberValidation(phone);
+                      },
+                    ),
+                    h1,
+                    TextformField(
+                      hintText: 'Password',
+                      controller: controller,
+                      svgPath: 'asset/Icons/lock-password-svgrepo-com.svg',
+                      keyboardType: TextInputType.name,
+                      onChanged: (String value) {
+                        password = value;
+                      },
+                      validator: (String? value) {
+                        return formValidations.passwordValidation(password);
+                      },
+                    ),
+                    h1,
+                    TextformField(
+                      hintText: 'Confirm password',
+                      svgPath: 'asset/Icons/password-svgrepo-com.svg',
+                      keyboardType: TextInputType.name,
+                      onChanged: (String value) {
+                        confirmPassword = value;
+                      },
+                      validator: (String? value) {
+                        return formValidations.confirmPasswordValidation(
+                            controller.text, value);
+                      },
+                    ),
+                  ],
+                ),
               ),
-              h1,
-              TextformField(
-                hintText: 'Enter email',
-                svgPath: 'asset/Icons/email-svgrepo-com.svg',
-                keyboardType: TextInputType.emailAddress,
-                onChanged: (String value) {
-                  email = value;
-                },
-                validator: (String? value) {
-                  return formValidations.emailFormValidation(email);
-                },
-              ),
-              h1,
-              TextformField(
-                hintText: 'Enter phone number',
-                svgPath: 'asset/Icons/phone-svgrepo-com.svg',
-                keyboardType: TextInputType.phone,
-                onChanged: (String value) {phone = value;}, validator: (String? value ) { return formValidations.phoneNumberValidation(phone);},
-              ),
-              h1,
-              TextformField(
-                hintText: 'Password',
-                controller: controller,
-                svgPath: 'asset/Icons/lock-password-svgrepo-com.svg',
-                keyboardType: TextInputType.name,
-                onChanged: (String value) {
-                  password = value;
-                }, validator: (String? value ) {return formValidations.passwordValidation(password);  },
-              ),
-              h1,
-              TextformField(
-                hintText: 'Confirm password',
-                svgPath: 'asset/Icons/password-svgrepo-com.svg',
-                keyboardType: TextInputType.name,
-                onChanged: (String value) {
-                  phone = value;
-                }, validator: (String? value) {return formValidations.confirmPasswordValidation(controller.text,value);  },
-              ),
-                ],
-              ),
-
-              ),
-             
               h2,
               h1,
               Row(
@@ -108,7 +125,7 @@ class SignUpScreen extends StatelessWidget {
                       fontSize: 12.sp,
                       primary: buttonColor,
                       onPressed: () {
-                        Get.to(const LoginScreen());
+                        interviewer = true;
                       }),
                   CustomButton(
                       title: 'Interviewee',
@@ -116,7 +133,7 @@ class SignUpScreen extends StatelessWidget {
                       fontSize: 12.sp,
                       primary: buttonColor,
                       onPressed: () {
-                        Get.to(const LoginScreen());
+                        Interviewee = true;
                       })
                 ],
               ),
@@ -126,12 +143,14 @@ class SignUpScreen extends StatelessWidget {
                   height: 8.h,
                   fontSize: 18.sp,
                   primary: Colors.blueGrey[200]!,
-                  onPressed: () {
-                    if(formKey.currentState!.validate()){
-                      print('success');
-
+                  onPressed: () async {
+                    if (formKey.currentState!.validate()) {
+                      // print('success');
+                      await userRegistrationController.user(name, email, phone,
+                          password, confirmPassword, interviewer);
+                          
                     }
-                    // Get.to(const LoginScreen());
+                   
                   }),
               h2,
               RegisterRichText(

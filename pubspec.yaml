@@ -40,8 +40,10 @@ dependencies:
   get: ^4.6.5
   getxbottombar: ^0.0.1
   google_fonts: ^3.0.1
+  http: ^0.13.4
   image_picker: ^0.8.5+3
   intl: ^0.17.0
+  shared_preferences: ^2.0.15
   sizer: ^2.0.15
   syncfusion_flutter_charts: ^20.1.61
 
