@@ -3,6 +3,7 @@ import 'package:get/get_core/get_core.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:intent_original/Controller/authentication_controller.dart';
+
 import 'package:intent_original/Controller/user_registration_controller.dart';
 import 'package:intent_original/View/Core/Colors/colors.dart';
 import 'package:intent_original/View/Core/Size/size.dart';
@@ -28,8 +29,8 @@ class SignUpScreen extends StatelessWidget {
     String password = '';
     String phone = '';
     String confirmPassword = '';
-    bool interviewer = false;
-    bool Interviewee = false;
+    bool? user ;
+    
     TextEditingController controller = TextEditingController();
     final formKey = GlobalKey<FormState>();
 
@@ -125,7 +126,8 @@ class SignUpScreen extends StatelessWidget {
                       fontSize: 12.sp,
                       primary: buttonColor,
                       onPressed: () {
-                        interviewer = true;
+                        user = true;
+                        print(user);
                       }),
                   CustomButton(
                       title: 'Interviewee',
@@ -133,7 +135,8 @@ class SignUpScreen extends StatelessWidget {
                       fontSize: 12.sp,
                       primary: buttonColor,
                       onPressed: () {
-                        Interviewee = true;
+                        user = false;
+                        print(user);
                       })
                 ],
               ),
@@ -146,11 +149,10 @@ class SignUpScreen extends StatelessWidget {
                   onPressed: () async {
                     if (formKey.currentState!.validate()) {
                       // print('success');
+
                       await userRegistrationController.user(name, email, phone,
-                          password, confirmPassword, interviewer);
-                          
+                          password, confirmPassword, user!);
                     }
-                   
                   }),
               h2,
               RegisterRichText(

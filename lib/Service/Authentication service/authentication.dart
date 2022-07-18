@@ -8,7 +8,7 @@ class UserAuthenticationApiCall {
   static IntentOrginalApis intentOrginalApis = IntentOrginalApis();
 
   final dio = Dio(BaseOptions(
-      baseUrl: intentOrginalApis.baseUrl, responseType: ResponseType.json));
+      baseUrl: intentOrginalApis.baseUrl, responseType: ResponseType.plain));
 
   Future<Response> loginCheck(Map<String, dynamic> login) async {
     try {

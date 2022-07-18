@@ -6,12 +6,13 @@ import 'package:intent_original/Model/login_response_model.dart';
 import 'package:intent_original/Service/Authentication%20service/authentication.dart';
 import 'package:intent_original/View/Core/Colors/colors.dart';
 import 'package:intent_original/View/Screens/UI/HomeScreen/horm_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:intent_original/main.dart';
 
 class AuthenticationController extends GetxController {
+  
+
   Future<LoginResponseModel?> login(String email, String password) async {
     final userAuthenticationApiCall = UserAuthenticationApiCall();
-    final prifer = await SharedPreferences.getInstance();
 
     Map<String, dynamic> login = {"email": email, "password": password};
 
@@ -20,11 +21,11 @@ class AuthenticationController extends GetxController {
 
       log(response.data);
       log(response.statusMessage.toString());
-    
+
       final jsonFile = jsonDecode(response.data);
       // log(response.statusCode.toString());
       // final message = response.data;
-      print(jsonFile['message']);
+      // print(jsonFile['message']);
 
       if (jsonFile['message'].toString() == "Invalid login details") {
         Get.snackbar('Error', 'Invalid login details',
@@ -47,14 +48,12 @@ class AuthenticationController extends GetxController {
             duration: const Duration(seconds: 3));
       }
 
-      final responseData = loginResponseModelFromJson(response.data);
+      final  responseData = loginResponseModelFromJson(response.data);
+      await preferences.setString('login', response.data.toString());
+      print("---------------------------${responseData.user!.name}");
 
       if (response.statusCode == 200 &&
           jsonFile['message'].toString() == 'Login Successfull') {
-        // print('successful');
-        // final responseModel = userLoginFromJson(response.data);
-        // print(responseData.toString());
-        // print('login aayi');
         Get.snackbar('Success', 'Successfully Login',
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: green,
@@ -65,21 +64,16 @@ class AuthenticationController extends GetxController {
             duration: const Duration(seconds: 3));
 
         Get.to(() => const HomeScreen());
-        // log(response.statusCode.toString());
-        // log(response.statusMessage.toString());
-        // final Map datas = response.data;
-        // if (datas.containsKey('user')) {
-        //   log('YESSSSSSSSSSSSSSSSSSSSSS');
-        // } else {
-        //   log('NOOOOOOOOOOOOOOOOOOOO');
-        // }
 
-        // LoginResponseModel loginResponseModel =
-        //     LoginResponseModel.fromJson(response.data);
-        // await prifer.setString('token', loginResponseModel.token.toString());
-        // await prifer.setString('id', loginResponseModel.user.id.toString());
+        LoginResponseModel loginResponseModel =
+            LoginResponseModel.fromJson(response.data);
 
-        // return loginResponseModel;
+        await preferences.setString(
+            'token', loginResponseModel.token.toString());
+        await preferences.setString(
+            'id', loginResponseModel.user!.id.toString());
+
+        return loginResponseModel;
       } else {
         Get.snackbar('Error',
             'Email or Password is incorrect Please cheack and try again',
