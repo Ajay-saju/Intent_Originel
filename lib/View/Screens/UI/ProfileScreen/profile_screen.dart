@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intent_original/View/Core/Colors/colors.dart';
 import 'package:intent_original/View/Core/Size/size.dart';
+import 'package:intent_original/View/Screens/UI/LoginScreen/login_screen.dart';
 import 'package:intent_original/View/Screens/UI/UserInterviewsScreen/user_interviews_screns.dart';
 import 'package:intent_original/View/Screens/UI/UserNetworkScreen/user_network_screen.dart';
 import 'package:intent_original/View/Screens/UI/UserNotificationScreen/user_notification_screen.dart';
@@ -48,6 +49,10 @@ class ProfileScreen extends StatelessWidget {
               }),
               const ProfileDivider(),
                ListTile(
+                onTap: () {
+                  Get.to(const LoginScreen());
+                  
+                },
                       title: Text(
                         'Log out',
                         style: GoogleFonts.spaceGrotesk(

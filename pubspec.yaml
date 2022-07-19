@@ -27,6 +27,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  api_cache_manager: ^1.0.2
   bottom_navy_bar: ^6.0.0
   cupertino_icons: ^1.0.2
   dio: ^4.0.6

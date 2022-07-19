@@ -8,6 +8,7 @@ import 'package:intent_original/View/Screens/Widgets/new_widget.dart';
 import 'package:intent_original/View/Screens/Widgets/post_circle_avathar_widget.dart';
 import 'package:intent_original/View/Screens/Widgets/post_from_user_widget.dart';
 import 'package:intent_original/View/Screens/Widgets/post_title_widget.dart';
+import 'package:intent_original/main.dart';
 import 'package:sizer/sizer.dart';
 
 class HomePagePosts extends StatelessWidget {
@@ -40,6 +41,7 @@ class HomePagePosts extends StatelessWidget {
                               subTitle: 'Interviwer',
                             ),
                             const Spacer(),
+                            preferences.getBool("user") == false ?
                             SizedBox(
                               height: 3.h,
                               child: CustomElevetedButton(
@@ -49,9 +51,9 @@ class HomePagePosts extends StatelessWidget {
                                   showDialog<String>(
                                     context: context,
                                     builder: (BuildContext context) =>
-                                         AlertDialog(
-                                          elevation: 0,
-                                          backgroundColor: buttonColor,
+                                        AlertDialog(
+                                      elevation: 0,
+                                      backgroundColor: buttonColor,
                                       title: const Text('Enter Your Requrment'),
                                       content: TextFormField(
                                           keyboardAppearance: Brightness.dark,
@@ -67,7 +69,10 @@ class HomePagePosts extends StatelessWidget {
                                                 TextStyle(fontSize: 14.sp),
                                           )),
                                       actions: <Widget>[
-                                        CustomElevetedButton(text: '₹ 500', color: white, onPressed: (){}),
+                                        CustomElevetedButton(
+                                            text: '₹ 500',
+                                            color: white,
+                                            onPressed: () {}),
                                         // TextButton(
                                         //   onPressed: () =>
                                         //       Navigator.pop(context, 'Cancel'),
@@ -76,14 +81,20 @@ class HomePagePosts extends StatelessWidget {
                                         TextButton(
                                           onPressed: () =>
                                               Navigator.pop(context, 'OK'),
-                                          child:  Text('Submit',style: GoogleFonts.poppins(textStyle: TextStyle(fontSize: 16.sp,color: white)),),
+                                          child: Text(
+                                            'Submit',
+                                            style: GoogleFonts.poppins(
+                                                textStyle: TextStyle(
+                                                    fontSize: 16.sp,
+                                                    color: white)),
+                                          ),
                                         ),
                                       ],
                                     ),
                                   );
                                 },
                               ),
-                            ),
+                            ):const SizedBox(),
                           ],
                         ),
                         h1,

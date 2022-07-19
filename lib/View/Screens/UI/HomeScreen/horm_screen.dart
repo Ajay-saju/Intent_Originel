@@ -15,7 +15,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authenticationController = AuthenticationController();
+    final authenticationController = Get.put(AuthenticationController());
 
     return Scaffold(
       body: SafeArea(
@@ -28,11 +28,12 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // print(authenticationController.loginResponseModel!.user!.name.toString());
                 TitleTextWidget(
                     color: textColors,
-                    text: ''
-                        .toString(),
+                    text: preferences.getString('userName').toString(),
                     fontSize: 20),
+
                 h1,
                 const TitleTextWidget(
                     color: cBlack, text: "Top Interviewr's", fontSize: 10)

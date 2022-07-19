@@ -8,6 +8,7 @@ import 'package:intent_original/View/Screens/UI/HomeScreen/horm_screen.dart';
 import 'package:intent_original/View/Screens/UI/InterviewerProfileScreen/interviewer_profile_screen.dart';
 import 'package:intent_original/View/Screens/UI/ProfileScreen/profile_screen.dart';
 import 'package:intent_original/View/Screens/UI/SearchScreen/search_screen.dart';
+import 'package:intent_original/main.dart';
 import 'package:sizer/sizer.dart';
 
 class BottumNavBarScreen extends StatefulWidget {
@@ -42,13 +43,14 @@ class _BottumNavBarScreenState extends State<BottumNavBarScreen> {
           onPageChanged: (index) {
             setState(() => _currentIndex = index);
           },
-          children: const <Widget>[
-            HomeScreen(),
-            ChatScreen(),
-            PostScreen(),
-            SearchScreen(),
-            InterviwerProfileScreen()
-            // ProfileScreen()
+          children:  <Widget>[
+            const HomeScreen(),
+            const ChatScreen(),
+            const PostScreen(),
+            const SearchScreen(),
+            preferences.getBool("user") == true ?
+            const InterviwerProfileScreen() : 
+            const ProfileScreen()
 
           ],
         ),

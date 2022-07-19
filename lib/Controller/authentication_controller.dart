@@ -5,11 +5,13 @@ import 'package:get/get.dart';
 import 'package:intent_original/Model/login_response_model.dart';
 import 'package:intent_original/Service/Authentication%20service/authentication.dart';
 import 'package:intent_original/View/Core/Colors/colors.dart';
-import 'package:intent_original/View/Screens/UI/HomeScreen/horm_screen.dart';
+import 'package:intent_original/View/Screens/UI/BottumNavyBar/bottum_nav_bar_screen.dart';
 import 'package:intent_original/main.dart';
 
 class AuthenticationController extends GetxController {
-  
+  LoginResponseModel? loginResponseModel;
+
+   
 
   Future<LoginResponseModel?> login(String email, String password) async {
     final userAuthenticationApiCall = UserAuthenticationApiCall();
@@ -23,9 +25,6 @@ class AuthenticationController extends GetxController {
       log(response.statusMessage.toString());
 
       final jsonFile = jsonDecode(response.data);
-      // log(response.statusCode.toString());
-      // final message = response.data;
-      // print(jsonFile['message']);
 
       if (jsonFile['message'].toString() == "Invalid login details") {
         Get.snackbar('Error', 'Invalid login details',
@@ -48,7 +47,7 @@ class AuthenticationController extends GetxController {
             duration: const Duration(seconds: 3));
       }
 
-      final  responseData = loginResponseModelFromJson(response.data);
+      final responseData = loginResponseModelFromJson(response.data);
       await preferences.setString('login', response.data.toString());
       print("---------------------------${responseData.user!.name}");
 
@@ -63,15 +62,21 @@ class AuthenticationController extends GetxController {
             borderWidth: 2,
             duration: const Duration(seconds: 3));
 
-        Get.to(() => const HomeScreen());
-
-        LoginResponseModel loginResponseModel =
-            LoginResponseModel.fromJson(response.data);
+         loginResponseModel =
+            loginResponseModelFromJson(response.data);
 
         await preferences.setString(
-            'token', loginResponseModel.token.toString());
+            'token', loginResponseModel!.token.toString());
         await preferences.setString(
-            'id', loginResponseModel.user!.id.toString());
+            'id', loginResponseModel!.user!.id.toString());
+        await preferences.setString(
+            "userName", loginResponseModel!.user!.name.toString());
+            await preferences.setBool('user', loginResponseModel!.user!.interviewer!);
+
+            // print("========================${loginResponseModel!.user!.interviewer!}");
+        // print(loginResponseModel!.user!.name.toString());
+
+        Get.to(() => const BottumNavBarScreen());
 
         return loginResponseModel;
       } else {

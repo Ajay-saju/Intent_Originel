@@ -9,6 +9,7 @@ import 'package:intent_original/View/Screens/UI/Interviewer%20Dashboard/intervie
 import 'package:intent_original/View/Screens/UI/Interviewer%20Reports%20Screen/interview_report_screen.dart';
 import 'package:intent_original/View/Screens/UI/InterviewerRequestScreen/interviewer_requiest_screen.dart';
 import 'package:intent_original/View/Screens/UI/Interviwer%20edit%20screen/interviewer_edit_screen.dart';
+import 'package:intent_original/View/Screens/UI/LoginScreen/login_screen.dart';
 import 'package:intent_original/View/Screens/UI/UserNetworkScreen/user_network_screen.dart';
 import 'package:intent_original/View/Screens/UI/UserPostScreen/posts_screen.dart';
 import 'package:intent_original/View/Screens/Widgets/CircleProfilePicture.dart';
@@ -81,6 +82,9 @@ class InterviwerProfileScreen extends StatelessWidget {
                     }),
                 const ProfileDivider(),
                 ListTile(
+                  onTap: (() {
+                    Get.to(const LoginScreen());
+                  }),
                   title: Text(
                     'Log out',
                     style: GoogleFonts.spaceGrotesk(
