@@ -48,7 +48,7 @@ class UserPostScreen extends StatelessWidget {
                                       child: Stack(
                                         
                                         children:const [
-                                           PostFromUserWidget(),
+                                          //  PostFromUserWidget(index: index,),
                                           Align(
                                             alignment: Alignment.bottomCenter,
                                             child: NewWidget(isHome: false),

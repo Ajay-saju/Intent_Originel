@@ -3,11 +3,12 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intent_original/Controller/authentication_controller.dart';
 import 'package:intent_original/Controller/eye_changing_controller.dart';
+import 'package:intent_original/Controller/post_controller/post_controller.dart';
 import 'package:intent_original/View/Core/Colors/colors.dart';
 import 'package:intent_original/View/Core/Size/size.dart';
 import 'package:intent_original/View/Form%20validation/form_validation.dart';
 import 'package:intent_original/View/Screens/UI/BottumNavyBar/bottum_nav_bar_screen.dart';
-import 'package:intent_original/View/Screens/UI/HomeScreen/horm_screen.dart';
+// import 'package:intent_original/View/Screens/UI/HomeScreen/horm_screen.dart';
 
 import 'package:intent_original/View/Screens/UI/SignupScreen/signup_screen.dart';
 import 'package:intent_original/View/Screens/Widgets/custume_button.dart';
@@ -22,6 +23,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final authenticationController = Get.put(AuthenticationController());
     final eyeChaingingController = Get.put(EyeChaingingController());
+    // final postController = Get.put(PostController());
     final formKey = GlobalKey<FormState>();
     String email = '';
     String password = '';
@@ -98,6 +100,7 @@ class LoginScreen extends StatelessWidget {
               fontSize: 14.sp,
               primary: buttonColor,
               onPressed: () {
+                
                 Get.to(const BottumNavBarScreen());
               }),
           h2,

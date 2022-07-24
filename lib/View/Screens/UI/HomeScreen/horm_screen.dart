@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intent_original/Controller/authentication_controller.dart';
+import 'package:intent_original/Controller/post_controller/post_controller.dart';
 import 'package:intent_original/Model/login_response_model.dart';
 import 'package:intent_original/View/Core/Colors/colors.dart';
 import 'package:intent_original/View/Core/Size/size.dart';
@@ -15,37 +16,42 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authenticationController = Get.put(AuthenticationController());
+    
+     final postController = Get.put(PostController());
+     postController.getPost;
+    
 
     return Scaffold(
-      body: SafeArea(
-          child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          h4,
-          Padding(
-            padding: EdgeInsets.only(left: 2.h),
-            child: Column(
+    
+      body: SingleChildScrollView(
+        child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // print(authenticationController.loginResponseModel!.user!.name.toString());
-                TitleTextWidget(
-                    color: textColors,
-                    text: preferences.getString('userName').toString(),
-                    fontSize: 20),
-
-                h1,
-                const TitleTextWidget(
-                    color: cBlack, text: "Top Interviewr's", fontSize: 10)
+        h4,
+        Padding(
+          padding: EdgeInsets.only(left: 2.h),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // print(authenticationController.loginResponseModel!.user!.name.toString());
+              TitleTextWidget(
+                  color: textColors,
+                  text: preferences.getString('userName').toString(),
+                  fontSize: 20,),
+              
+              h1,
+              const TitleTextWidget(
+                  color: cBlack, text: "Top Interviewr's", fontSize: 10)
+            ],
+          ),
+        ),
+        h2,
+        const TopInterviers(),
+        h2,
+        const HomePagePosts()
               ],
             ),
-          ),
-          h2,
-          const TopInterviers(),
-          h2,
-          const HomePagePosts()
-        ],
-      )),
+      ),
     );
   }
 }

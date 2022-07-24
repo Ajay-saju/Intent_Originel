@@ -44,14 +44,18 @@ dependencies:
   http: ^0.13.4
   image_picker: ^0.8.5+3
   intl: ^0.17.0
+  json_annotation: ^4.6.0
   shared_preferences: ^2.0.15
   sizer: ^2.0.15
   syncfusion_flutter_charts: ^20.1.61
 
 dev_dependencies:
+  build_runner: ^2.2.0
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
+  freezed: ^2.1.0+1
+  json_serializable: ^6.3.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

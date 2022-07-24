@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:intent_original/View/Screens/Widgets/home_page_post_widget.dart';
 import 'package:sizer/sizer.dart';
 
 class PostFromUserWidget extends StatelessWidget {
+  final int index;
   const PostFromUserWidget({
+    required this.index,
     Key? key,
   }) : super(key: key);
 
@@ -13,12 +16,12 @@ class PostFromUserWidget extends StatelessWidget {
       height: 28.4.h,
       decoration: BoxDecoration(
           color: Colors.white.withOpacity(.5),
-          borderRadius: BorderRadius.all(
-              Radius.circular(2.h)),
-          image: const DecorationImage(
+          borderRadius: BorderRadius.all(Radius.circular(2.h)),
+          image: DecorationImage(
               fit: BoxFit.cover,
-              image: NetworkImage(
-                  'https://www.insightsonindia.com/wp-content/uploads/2019/10/Block-Chain-Technology.png'))),
+              image: NetworkImage(postController
+                  .getAllPosts.value.posts![index].postImg
+                  .toString()))),
     );
   }
 }

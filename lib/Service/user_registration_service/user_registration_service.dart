@@ -23,15 +23,15 @@ class UserRegistrationApiCall {
     }
   }
 
-  Future<Response> createInterviewer(Map<String, dynamic> interviewer) async {
-    try {
-      Response response =
-          await dio.post('registration', data: jsonEncode(interviewer));
-          return response;
+  // Future<Response> createInterviewer(Map<String, dynamic> interviewer) async {
+  //   try {
+  //     Response response =
+  //         await dio.post('registration', data: jsonEncode(interviewer));
+  //         return response;
 
-    } catch (e) {
-      print(e.toString());
-      rethrow;
-    }
-  }
+  //   } catch (e) {
+  //     print(e.toString());
+  //     rethrow;
+  //   }
+  // }
 }
