@@ -1,24 +1,24 @@
-class GetAllPost {
+class AddComment {
   String? message;
   List<Posts>? posts;
 
-  GetAllPost({this.message, this.posts});
+  AddComment({this.message, this.posts});
 
-  GetAllPost.fromJson(Map<String, dynamic> json) {
+  AddComment.fromJson(Map<String, dynamic> json) {
     message = json['message'];
     if (json['posts'] != null) {
       posts = <Posts>[];
       json['posts'].forEach((v) {
-        posts!.add(new Posts.fromJson(v));
+        posts!.add( Posts.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['message'] = this.message;
-    if (this.posts != null) {
-      data['posts'] = this.posts!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['message'] = message;
+    if (posts != null) {
+      data['posts'] = posts!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -49,33 +49,33 @@ class Posts {
     description = json['description'];
     postImg = json['postImg'];
     createdBy = json['createdBy'] != null
-        ? new CreatedBy.fromJson(json['createdBy'])
+        ? CreatedBy.fromJson(json['createdBy'])
         : null;
     createdAt = json['createdAt'];
     likes = json['likes'].cast<String>();
     if (json['comments'] != null) {
       comments = <Comments>[];
       json['comments'].forEach((v) {
-        comments!.add(new Comments.fromJson(v));
+        comments!.add(Comments.fromJson(v));
       });
     }
     iV = json['__v'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data =  Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['description'] = this.description;
-    data['postImg'] = this.postImg;
-    if (this.createdBy != null) {
-      data['createdBy'] = this.createdBy!.toJson();
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['_id'] = sId;
+    data['description'] = description;
+    data['postImg'] = postImg;
+    if (createdBy != null) {
+      data['createdBy'] = createdBy!.toJson();
     }
-    data['createdAt'] = this.createdAt;
-    data['likes'] = this.likes;
-    if (this.comments != null) {
-      data['comments'] = this.comments!.map((v) => v.toJson()).toList();
+    data['createdAt'] = createdAt;
+    data['likes'] = likes;
+    if (comments != null) {
+      data['comments'] = comments!.map((v) => v.toJson()).toList();
     }
-    data['__v'] = this.iV;
+    data['__v'] = iV;
     return data;
   }
 }
@@ -99,12 +99,12 @@ class CreatedBy {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data =  Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['name'] = this.name;
-    data['about'] = this.about;
-    data['interviewer'] = this.interviewer;
-    data['profileImg'] = this.profileImg;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['_id'] = sId;
+    data['name'] = name;
+    data['about'] = about;
+    data['interviewer'] = interviewer;
+    data['profileImg'] = profileImg;
     return data;
   }
 }
@@ -118,19 +118,19 @@ class Comments {
 
   Comments.fromJson(Map<String, dynamic> json) {
     commentedBy = json['commentedBy'] != null
-        ? new CreatedBy.fromJson(json['commentedBy'])
+        ? CreatedBy.fromJson(json['commentedBy'])
         : null;
     comment = json['comment'];
     sId = json['_id'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.commentedBy != null) {
-      data['commentedBy'] = this.commentedBy!.toJson();
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    if (commentedBy != null) {
+      data['commentedBy'] = commentedBy!.toJson();
     }
-    data['comment'] = this.comment;
-    data['_id'] = this.sId;
+    data['comment'] = comment;
+    data['_id'] = sId;
     return data;
   }
 }

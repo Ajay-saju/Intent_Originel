@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intent_original/View/Core/Size/size.dart';
 import 'package:intent_original/View/Screens/Widgets/new_widget.dart';
 import 'package:intent_original/View/Screens/Widgets/post_circle_avathar_widget.dart';
-import 'package:intent_original/View/Screens/Widgets/post_from_user_widget.dart';
 import 'package:intent_original/View/Screens/Widgets/post_title_widget.dart';
 import 'package:intent_original/View/Screens/Widgets/user_tab_app_bar.dart';
 import 'package:sizer/sizer.dart';
